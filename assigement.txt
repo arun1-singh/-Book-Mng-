@@ -42,15 +42,16 @@ const filteredBooks = books.filter((book) =>
 
 #Assigement 2 - Jwt implementation
 
-Step 1: Install required packages
+Step 1: Install required packages -> Jwt 
 
 step 2 : Updated Backend Code with JWT
 
         Add REGISTER and LOGIN user handler 
         Configure JWT
-        app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # move to env in real apps
+        app.config['JWT_SECRET_KEY'] = 'super-secret-key'  
         jwt = JWTManager(app)
-        PROTECTED ROUTES
+
+        PROTECT the  ROUTES
 
 step 3: Create Users Table in PostgreSQL
 
@@ -62,6 +63,9 @@ CREATE TABLE users (
 );
 
 step 4:  install axios in react 
-step 5 : create login.jsx and register.jsx
+step 5 : create login.jsx and register.jsx component
 
 step 6 : send Token with every req
+ headers: {
+        Authorization: `Bearer ${token}`, //  sending Token with every req
+      },
