@@ -5,8 +5,7 @@ flask-cors==4.0.0
 # API Documentation
 flasgger==0.9.7.1
 
-# Database dependencies
-psycopg2-binary==2.9.9
+# Database dependencies — SQLite is built into Python, no extra package needed
 
 # Testing dependencies
 pytest==7.4.3

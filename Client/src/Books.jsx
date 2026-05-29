@@ -94,7 +94,7 @@ useEffect(() => {
                 <td>{book.publisher}</td>
                 <td>{book.name}</td>
                 <td>{book.date}</td>
-                <td>{book.cost}</td>
+                <td>Rs. {book.cost}</td>
                 <td>{book.edition}</td>
                 <td>
                   <button

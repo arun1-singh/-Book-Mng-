@@ -1,0 +1,11 @@
+/* Hide left panel on small screens for auth pages */
+@media (max-width: 640px) {
+  [data-auth-left] {
+    display: none !important;
+  }
+
+  [data-auth-card] {
+    flex-direction: column !important;
+    min-height: unset !important;
+  }
+}

@@ -61,13 +61,15 @@ const token = localStorage.getItem("token"); //get token
                     />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="cost" className="form-label">Book name:</label>
-                    <input type="text"
+                    <label htmlFor="cost" className="form-label">Cost:</label>
+                    <input type="number"
                         className="form-control"
-                        placeholder="Rupees"
+                        placeholder="Enter cost (e.g. 399)"
                         name="cost"
+                        min="0"
+                        step="0.01"
                         value={values.cost}
-                        onChange={(e) => setValues({ ...values, cost: e.target.value })}
+                        onChange={(e) => setValues({ ...values, cost: parseFloat(e.target.value) })}
                     />
                 </div>
                     <div className="mb-3">

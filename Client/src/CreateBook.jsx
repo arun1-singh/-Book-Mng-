@@ -1,86 +1,85 @@
-import axios from 'axios'//core react library for building user interface
-import React, {useState} from 'react'//for making requests to your backend server
-import { useNavigate } from 'react-router-dom' // useNavigate use to navigate to different routes
+import axios from 'axios'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const CreateBook = () => { // defined the functional component named createbook
-    const [ values, setValues] = useState({
-        publisher:"",
-        name:"",
-        date:'',
-        cost:'',
-        edition:""
+const CreateBook = () => {
+    const [values, setValues] = useState({
+        publisher: "",
+        name: "",
+        date: '',
+        cost: '',
+        edition: ""
     })
-    const token = localStorage.getItem("token"); //get token
-    const navigate = useNavigate() // navigate to the home page
-    const handleSubmit= (e) =>{    // event handler to handle form submission
-        e.preventDefault()        // prevent default form submission
-        axios.post('http://localhost:5000/create', values ,
-             {
-      headers: {
-        Authorization: `Bearer ${token}`, //  sending Token with every req
-      },
+    const token = localStorage.getItem("token")
+    const navigate = useNavigate()
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:5000/create', values, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(res => navigate('/'))
+        .catch(err => console.log(err))
     }
-        ) // sends the post request to the server
-        .then(res => navigate('/'))                        // on successful response user will be navigated to the home page 
-        .catch(err => console.log(err))                    //logs error occur during request
-    }
-    return ( // div container contain flexbox classes to centring content
-        <div className='d-flex align-items-center flex-column mt-3'> 
+
+    return (
+        <div className='d-flex align-items-center flex-column mt-3'>
             <h2>Add a Book</h2>
             <form className='wt-50' onSubmit={handleSubmit}>
-                <div class="mb-3 mt-3">
-                    <label htmlFor="Publisher" 
-                    class="form-label">Publisher
-                    </label>
-                    <input type="text" 
-                    class="form-control"  
-                    placeholder="Enter Publisher name" 
-                    name="publisher" 
-                    onChange={(e)=> setValues({...values, publisher: e.target.value})}
+                <div className="mb-3 mt-3">
+                    <label htmlFor="publisher" className="form-label">Publisher</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter Publisher name"
+                        name="publisher"
+                        onChange={(e) => setValues({ ...values, publisher: e.target.value })}
                     />
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="Book name" 
-                    class="form-label">Book name:
-                    </label>
-                    <input type="text" 
-                    class="form-control" 
-                    placeholder="Enter Book name" 
-                    name="name" 
-                    onChange={(e)=> setValues({...values, name: e.target.value})}
+                <div className="mb-3">
+                    <label htmlFor="name" className="form-label">Book name:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Enter Book name"
+                        name="name"
+                        onChange={(e) => setValues({ ...values, name: e.target.value })}
                     />
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="Publish date" 
-                    class="form-label">Publish Date:
-                    </label>
-                    <input type="date" 
-                     class="form-control"
-                    name="name" 
-                    onChange={(e)=> setValues({...values, date: e.target.value})}
+                <div className="mb-3">
+                    <label htmlFor="date" className="form-label">Publish Date:</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        name="date"
+                        onChange={(e) => setValues({ ...values, date: e.target.value })}
                     />
                 </div>
-                <div class="mb-3">
-                    <label htmlFor="cost" 
-                    class="form-label">cost:
-                    </label>
-                    <input type="text" 
-                     class="form-control"
-                    name="name" 
-                    onChange={(e)=> setValues({...values, cost: e.target.value})}
+                <div className="mb-3">
+                    <label htmlFor="cost" className="form-label">Cost:</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        name="cost"
+                        min="0"
+                        step="0.01"
+                        placeholder="Enter cost (e.g. 399)"
+                        onChange={(e) => setValues({ ...values, cost: parseFloat(e.target.value) })}
                     />
                 </div>
-                   <div class="mb-3">
-                    <label htmlFor="edition" 
-                    class="form-label">edition:
-                    </label>
-                    <input type="edition" 
-                     class="form-control"
-                    name="name" 
-                    onChange={(e)=> setValues({...values, edition: e.target.value})}
+                <div className="mb-3">
+                    <label htmlFor="edition" className="form-label">Edition:</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="edition"
+                        placeholder="Enter edition"
+                        onChange={(e) => setValues({ ...values, edition: e.target.value })}
                     />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
     )
